@@ -1,5 +1,5 @@
 import {h, render} from 'preact';
-import MyComponent from './components/video/index';
+import Timeline from './components/timeline';
 import './app.styl';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -9,7 +9,7 @@ require('reset-css/reset.css');
 render(
   (
     <div className='app'>
-      <MyComponent />
+      <Timeline />
     </div>
   ), document.body
 );
