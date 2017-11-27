@@ -7,8 +7,8 @@ class TimelineItem extends Component {
   constructor() {
     super();
     this.state = {
-      stylesLeft: '200px',
-      stylesWidth: '100px',
+      stylesLeft: 100,
+      stylesWidth: 200,
       tempClickStart: 0,
     };
 
@@ -23,32 +23,30 @@ class TimelineItem extends Component {
 
     const el = document.createElement('div');
     event.dataTransfer.setDragImage(el, 0, 0);
-    event.dataTransfer.setData('Text', '1');
   }
   handleDrag(event) {
     if (event.clientX !== 0) {
       this.setState({
-        stylesLeft: event.clientX - this.state.tempClickStart + 'px',
+        stylesLeft: event.x - this.state.tempClickStart,
       });
     }
   }
   handleRightResizer(event) {
     if (event.clientX > 0) {
       this.setState({
-        stylesWidth: event.clientX - parseInt(this.state.stylesLeft) + 'px',
+        stylesWidth: event.clientX - this.state.stylesLeft,
       });
     }
   }
   render(props, state) {
     return (<div className={b()}
-      style={{width: state.stylesWidth, left: state.stylesLeft}}>
+      style={{width: state.stylesWidth + 'px', left: state.stylesLeft + 'px'}}>
       <div className={b('dragger')}
         draggable
         onDragStart={this.handleDragStart}
         onDrag={this.handleDrag} />
       <div className={b('right-res')}
         draggable
-        onDragStart={this.handleDragStart}
         onDrag={this.handleRightResizer} />
     </div>);
   }
