@@ -1,4 +1,4 @@
-import './timeline.wstyl';
+import './timeline.styl';
 import {h, Component} from 'preact';
 import TimelineItem from '../../components/timeline-item';
 
