@@ -1,7 +1,8 @@
 import {h, render} from 'preact';
 import {Provider} from 'preact-redux';
 import {createStore} from 'redux';
-import commentsReducers from './reducers';
+import combinedReducers from './reducers';
+import {loadComments, saveComments} from './utils/localStorage';
 
 import './app.styl';
 const b = require('b_').with('app');
@@ -16,7 +17,18 @@ import Timeline from './components/timeline';
 require('file-loader?name=[name].[ext]!./index.html');
 require('reset-css/reset.css');
 
-let store = createStore(commentsReducers);
+const savedCommentsState = loadComments();
+const store = createStore(combinedReducers, {
+  comments: savedCommentsState,
+});
+
+window.store = store;
+store.subscribe(() => {
+  const currentState = store.getState();
+  if (currentState && currentState.comments) {
+    saveComments(currentState.comments);
+  }
+});
 
 render(
   (
