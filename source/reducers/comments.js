@@ -6,9 +6,8 @@ const comments = (state = [], action) => {
         {
           id: action.id,
           text: action.text,
-          completed: false,
-          inPoint: 0,
-          outPoint: 10000,
+          inPoint: action.inpoint,
+          outPoint: action.outpoint,
         },
       ];
     default:
