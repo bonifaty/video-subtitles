@@ -10,6 +10,12 @@ const comments = (state = [], action) => {
           outPoint: action.outpoint,
         },
       ];
+      break;
+    case 'DELETE_COMMENT':
+      return state.filter((comment) => {
+        return comment.id !== action.id;
+      });
+      break;
     default:
       return state;
   }

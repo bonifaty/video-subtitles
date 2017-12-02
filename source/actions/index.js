@@ -10,9 +10,9 @@ export const addComment = (data) => {
   };
 };
 
-export const updateCommentsUrl = (newUrl) => {
+export const deleteComment = (id) => {
   return {
-    type: 'UPDATE_BLOB_URL',
-    url: newUrl,
+    type: 'DELETE_COMMENT',
+    id,
   };
 };

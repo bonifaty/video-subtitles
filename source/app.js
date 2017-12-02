@@ -8,29 +8,24 @@ import './app.styl';
 const b = require('b_').with('app');
 
 // Components
-// import AddComment from './components/add-comment';
+import AddComment from './components/add-comment';
 import CommentsList from './components/comments-list';
-import Video from './components/video';
+import VideoPlayer from './components/video-player';
 import Timeline from './components/timeline';
-import {commentsToWebVttBlobUrl} from './utils/webVtt';
-import {updateCommentsUrl} from './actions/index';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 require('file-loader?name=[name].[ext]!./index.html');
 require('reset-css/reset.css');
 
 const savedCommentsState = loadComments();
-const webVttBlobUrl = commentsToWebVttBlobUrl(savedCommentsState);
 const store = createStore(combinedReducers, {
   comments: savedCommentsState,
-  commentsUrl: webVttBlobUrl,
 });
 
 store.subscribe(() => {
   const currentState = store.getState();
   if (currentState && currentState.comments) {
     saveComments(currentState.comments);
-    updateCommentsUrl(commentsToWebVttBlobUrl(currentState.comments));
   }
 });
 
@@ -39,11 +34,11 @@ render(
     <Provider store={store}>
       <div className={b()}>
         <div className={b('main')}>
-          <Video />
+          <VideoPlayer />
           <Timeline />
         </div>
         <div className={b('sidebar')}>
-          {/* <AddComment />*/}
+          <AddComment />
           <CommentsList />
         </div>
       </div>

@@ -3,13 +3,14 @@ import {connect} from 'preact-redux';
 import './comments-list.styl';
 
 import {msToString, msToImageUrl} from '../../utils/time';
+import {deleteComment} from '../../actions';
 
 const b = require('b_').with('comments-list');
 
 // <img src={msToImageUrl(comment.inPoint)} width='100' alt='' />
 
-let CommentsList = ({comments}) => {
-  console.log(msToImageUrl(123));
+let CommentsList = ({comments, onDeleteComment}) => {
+  console.log(msToImageUrl(249));
   return (
     <div className={b()}>
       <div className={b('header')}>
@@ -25,14 +26,26 @@ let CommentsList = ({comments}) => {
             </div>
 
             <div className={b('comment-text')}>{comment.text}</div>
+            <button
+              onClick={() => onDeleteComment(comment.id)}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
   );
 };
+
 CommentsList = connect(
-  (state) => state
+  ({comments}) => {
+    return {
+      comments: comments.sort((a, b) => a.inPoint >= b.inPoint),
+    };
+  },
+  (dispatch) => ({
+    onDeleteComment: (id) => {
+      dispatch(deleteComment(id));
+    },
+  })
 )(CommentsList);
 
 export default CommentsList;
