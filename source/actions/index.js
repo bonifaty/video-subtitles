@@ -9,3 +9,10 @@ export const addComment = (data) => {
     outpoint,
   };
 };
+
+export const updateCommentsUrl = (newUrl) => {
+  return {
+    type: 'UPDATE_BLOB_URL',
+    url: newUrl,
+  };
+};

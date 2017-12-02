@@ -21,5 +21,5 @@ export const msToString = (ms) => {
 
   const mss = ms % 1000;
 
-  return pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2) + ':' + pad(mss, 3);
+  return pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2) + '.' + pad(mss, 3);
 };
