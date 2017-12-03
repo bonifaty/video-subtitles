@@ -6,7 +6,7 @@ export const commentsToWebVttBlobUrl = (comments) => {
   if (comments) {
     comments.forEach((comment) => {
       webVttText +=
-        `${msToString(comment.inPoint)} --> ${msToString(comment.outPoint)}
+`${msToString(comment.inPoint, true)} --> ${msToString(comment.outPoint, true)}
 ${comment.text}\r\n\r\n`;
     });
   }

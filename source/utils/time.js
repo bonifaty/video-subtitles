@@ -9,14 +9,17 @@ export const msToImageUrl = (ms) => {
   return `https://s3.eu-central-1.amazonaws.com/andrewabramov/video/frames/${imageNumber}.jpg`;
 };
 
-export const msToString = (ms) => {
-  const minutes = ms / (1000*60);
-  const m = Math.floor(minutes);
+export const msToString = (msValue, useDotForMs = false) => {
+  const hours = msValue / (1000 * 60 * 60);
+  const h = pad(Math.floor(hours), 2);
+
+  const minutes = (hours - h) * 60;
+  const m = pad(Math.floor(minutes), 2);
 
   const seconds = (minutes - m) * 60;
-  const s = Math.floor(seconds);
+  const s = pad(Math.floor(seconds), 2);
 
-  const mss = ms % 1000;
+  const ms = pad(msValue % 1000, 3);
 
-  return pad(m, 2) + ':' + pad(s, 2) + '.' + pad(mss, 3);
+  return `${h}:${m}:${s}${useDotForMs ? '.' : ':'}${ms}`;
 };
