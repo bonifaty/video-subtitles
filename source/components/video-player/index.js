@@ -20,7 +20,7 @@ class VideoPlayer extends Component {
     this.duration = Math.ceil(duration * 1000);
     this.handlePlayPauseClick = this.handlePlayPauseClick.bind(this);
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
-    this.handleTimelineClick = this.handleTimelineClick.bind(this);
+    this.updateTimeline = this.updateTimeline.bind(this);
   }
 
   handleTimeUpdate(e) {
@@ -40,9 +40,13 @@ class VideoPlayer extends Component {
     });
   }
 
-  handleTimelineClick(e) {
-    const prop = e.offsetX/(e.target.offsetWidth/100)/100;
-    this._video.currentTime = parseInt(prop*this.duration)*0.001;
+  updateTimeline(e) {
+    this._video.currentTime = e.target.value;
+  }
+
+  componentDidMount() {
+    // set range input to zero after mount
+    this._range.value = 0;
   }
 
   render({commentsUrl}, {isPlaying, currentTime}) {
@@ -57,7 +61,10 @@ class VideoPlayer extends Component {
         <div><button onClick={this.handlePlayPauseClick}>
           {isPlaying ? 'Pause' : 'Play'}</button>
           {msToString(currentTime)} / {msToString(this.duration)}</div>
-        <div className={b('timeline')} onClick={this.handleTimelineClick} />
+        <input ref={(c) => this._range = c}
+          className={b('timeline')} type='range'
+          onInput={this.updateTimeline}
+          min='0' max={this.duration/1000} step='0.001' />
       </div>
     </div>);
   }
