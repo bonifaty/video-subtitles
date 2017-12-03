@@ -13,7 +13,7 @@ class CommentsList extends Component {
   constructor() {
     super();
     this.state = {
-      showAddCommentForm: true,
+      showAddCommentForm: false,
     };
 
     this.showAddCommentForm = this.showAddCommentForm.bind(this);
