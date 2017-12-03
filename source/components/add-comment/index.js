@@ -11,41 +11,62 @@ const b = require('b_').with('add-comment');
 class AddComment extends Component {
   constructor() {
     super();
+    this.state = {
+      text: '',
+      inpoint: 0,
+      outpoint: 0,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTextUpdate = this.handleTextUpdate.bind(this);
+    this.handleInpointUpdate = this.handleInpointUpdate.bind(this);
+    this.handleOutpointUpdate = this.handleOutpointUpdate.bind(this);
+  }
+
+  handleTextUpdate(e) {
+    this.setState({
+      text: e.target.value,
+    });
+  }
+
+  handleInpointUpdate(ms) {
+    this.setState({
+      inpoint: ms,
+    });
+  }
+
+  handleOutpointUpdate(ms) {
+    this.setState({
+      outpoint: ms,
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = {};
-    for (let i=0; i < this._form.elements.length; i++) {
-      const formEle = this._form.elements[i];
-      formData[formEle.name] = formEle.value;
-    }
-    this.props.dispatch(addComment(formData));
+    this.props.dispatch(addComment(this.state));
     this._form.reset();
     this.props.onCloseForm();
   }
 
-  render({onCloseForm}, state) {
+  render({onCloseForm}, {text, inpoint, outpoint}) {
     return <div className={b()}>
       <button onClick={onCloseForm}>Back</button>
       <form ref={(c) => this._form = c} onSubmit={this.handleSubmit}>
-        <div hidden>
+        <div>
           <label>Comment</label>
           <div>
-            <textarea name='text' required />
+            <textarea onInput={this.handleTextUpdate} name='text' required />
           </div>
         </div>
         <div>
           <label>Inpoint</label>
           <div>
-            <TimeInput />
+            <TimeInput value={inpoint} onUpdate={this.handleInpointUpdate} />
           </div>
         </div>
-        <div hidden>
+        <div>
           <label>Outpoint</label>
           <div>
-            <input name='outpoint' required type='text' />
+            <TimeInput value={outpoint} onUpdate={this.handleOutpointUpdate} />
           </div>
         </div>
         <button type='submit'>Go</button>

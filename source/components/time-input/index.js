@@ -1,18 +1,19 @@
 import './time-input.styl';
 import {h, Component} from 'preact';
-import {pad, timeToMs} from '../../utils/time';
+import {pad, timeToMs, msToTime} from '../../utils/time';
 
 const b = require('b_').with('time-input');
 const DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 class TimeInput extends Component {
-  constructor() {
+  constructor(props) {
     super();
+    const {h, m, s, ms} = msToTime(props.value);
     this.state = {
-      hours: '00',
-      minutes: '00',
-      seconds: '00',
-      millis: '000',
+      hours: h,
+      minutes: m,
+      seconds: s,
+      millis: ms,
     };
 
     this.onInput = this.onInput.bind(this);
@@ -66,10 +67,6 @@ class TimeInput extends Component {
       default:
         break;
     }
-
-    const {hours, minutes, seconds, millis} = this.state;
-    console.log(timeToMs(parseInt(hours), parseInt(minutes),
-      parseInt(seconds), parseInt(millis)));
   }
   onFocus(e) {
     e.target.setSelectionRange(0, e.target.value.length);
@@ -102,6 +99,10 @@ class TimeInput extends Component {
       default:
         break;
     }
+
+    const ms = timeToMs(parseInt(hours), parseInt(minutes),
+      parseInt(seconds), parseInt(millis));
+    this.props.onUpdate(ms);
   }
   render(props, {hours, minutes, seconds, millis}) {
     return (<div className={b()}>

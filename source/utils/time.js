@@ -1,11 +1,8 @@
-function pad(num, size) {
+export function pad(num, size) {
   let s = num.toString();
   while (s.length < size) s = '0' + s;
   return s;
 }
-
-export {pad};
-
 export const msToImageUrl = (ms) => {
   const imageNumber = pad(Math.floor(ms / 250) + 1, 3);
   return `https://s3.eu-central-1.amazonaws.com/andrewabramov/video/frames/${imageNumber}.jpg`;
@@ -17,7 +14,7 @@ export const timeToMs = (h, m, s, ms) => {
   return (hoursToSeconds + minutesToSeconds + s) * 1000 + ms;
 };
 
-export const msToString = (msValue, useDotForMs = false) => {
+export const msToTime = (msValue) => {
   const hours = msValue / (1000 * 60 * 60);
   const h = pad(Math.floor(hours), 2);
 
@@ -29,5 +26,10 @@ export const msToString = (msValue, useDotForMs = false) => {
 
   const ms = pad(msValue % 1000, 3);
 
+  return {h, m, s, ms};
+};
+
+export const msToString = (msValue, useDotForMs = false) => {
+  const {h, m, s, ms} = msToTime(msValue);
   return `${h}:${m}:${s}${useDotForMs ? '.' : ':'}${ms}`;
 };
