@@ -11,9 +11,14 @@ const b = require('b_').with('video-player');
 class VideoPlayer extends Component {
   render({commentsUrl}) {
     return (<div className={b()}>
-      <video controls src={videoUrl}>
-        <track default src={commentsUrl} />
-      </video>
+      <div className={b('container')}>
+        <video src={videoUrl}>
+          <track default src={commentsUrl} />
+        </video>
+      </div>
+      <div className={b('controls')}>
+        <button>Play</button>
+      </div>
     </div>);
   }
 }

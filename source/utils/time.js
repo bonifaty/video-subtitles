@@ -10,10 +10,7 @@ export const msToImageUrl = (ms) => {
 };
 
 export const msToString = (ms) => {
-  const hours = ms / (1000*60*60);
-  const h = Math.floor(hours);
-
-  const minutes = (hours - h) * 60;
+  const minutes = ms / (1000*60);
   const m = Math.floor(minutes);
 
   const seconds = (minutes - m) * 60;
@@ -21,5 +18,5 @@ export const msToString = (ms) => {
 
   const mss = ms % 1000;
 
-  return pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2) + '.' + pad(mss, 3);
+  return pad(m, 2) + ':' + pad(s, 2) + '.' + pad(mss, 3);
 };

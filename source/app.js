@@ -8,10 +8,8 @@ import './app.styl';
 const b = require('b_').with('app');
 
 // Components
-import AddComment from './components/add-comment';
 import CommentsList from './components/comments-list';
 import VideoPlayer from './components/video-player';
-import Timeline from './components/timeline';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 require('file-loader?name=[name].[ext]!./index.html');
@@ -32,14 +30,16 @@ store.subscribe(() => {
 render(
   (
     <Provider store={store}>
-      <div className={b()}>
-        <div className={b('main')}>
-          <VideoPlayer />
-          <Timeline />
-        </div>
-        <div className={b('sidebar')}>
-          <AddComment />
-          <CommentsList />
+      <div className='page'>
+        <div className={b()}>
+          <div className={b('container')}>
+            <div className={b('main')}>
+              <VideoPlayer />
+            </div>
+            <div className={b('sidebar')}>
+              <CommentsList />
+            </div>
+          </div>
         </div>
       </div>
     </Provider>
