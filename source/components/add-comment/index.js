@@ -2,7 +2,8 @@ import {h, Component} from 'preact';
 
 import {connect} from 'preact-redux';
 import {addComment} from '../../actions';
-import {msToString} from '../../utils/time';
+
+import TimeInput from '../time-input';
 
 import './add-comment.styl';
 const b = require('b_').with('add-comment');
@@ -37,10 +38,8 @@ class AddComment extends Component {
         </div>
         <div>
           <label>Inpoint</label>
-          <div className={b('time-input')}>
-            <input className={b('time-input-control')}
-              name='inpoint' required type='text' />
-            <span className={b('time-input-helper')}>00:00:00:000</span>
+          <div>
+            <TimeInput />
           </div>
         </div>
         <div hidden>

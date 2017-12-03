@@ -4,9 +4,17 @@ function pad(num, size) {
   return s;
 }
 
+export {pad};
+
 export const msToImageUrl = (ms) => {
   const imageNumber = pad(Math.floor(ms / 250) + 1, 3);
   return `https://s3.eu-central-1.amazonaws.com/andrewabramov/video/frames/${imageNumber}.jpg`;
+};
+
+export const timeToMs = (h, m, s, ms) => {
+  const hoursToSeconds = h * 60 * 60;
+  const minutesToSeconds = m * 60;
+  return (hoursToSeconds + minutesToSeconds + s) * 1000 + ms;
 };
 
 export const msToString = (msValue, useDotForMs = false) => {
