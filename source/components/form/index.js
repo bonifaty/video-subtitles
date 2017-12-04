@@ -5,10 +5,10 @@ import {addSubtitle} from '../../actions';
 
 import TimeInput from '../time-input';
 
-import './add-subtitle.styl';
-const b = require('b_').with('add-subtitle');
+import './form.styl';
+const b = require('b_').with('form');
 
-class AddSubtitle extends Component {
+class Form extends Component {
   constructor() {
     super();
     this.state = {
@@ -47,9 +47,9 @@ class AddSubtitle extends Component {
     this.props.onCloseForm();
   }
 
-  render({onCloseForm}, {text, inpoint, outpoint}) {
+  render({onHideForm}, {text, inpoint, outpoint}) {
     return <div className={b()}>
-      <button onClick={onCloseForm}>Back</button>
+      <button onClick={onHideForm}>Back</button>
       <form ref={(c) => this._form = c} onSubmit={this.handleSubmit}>
         <div>
           <label>Subtitle</label>
@@ -75,6 +75,6 @@ class AddSubtitle extends Component {
   }
 }
 
-AddSubtitle = connect()(AddSubtitle);
+Form = connect()(Form);
 
-export default AddSubtitle;
+export default Form;

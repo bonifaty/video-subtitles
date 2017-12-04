@@ -11,8 +11,8 @@ import './app.styl';
 const b = require('b_').with('app');
 
 // Components
-import SubtitlesList from './components/subtitles-list';
 import VideoPlayer from './components/video-player';
+import Sidebar from './components/sidebar';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 require('file-loader?name=[name].[ext]!./index.html');
@@ -46,7 +46,7 @@ render(
               <VideoPlayer duration={VIDEO_DURATION} videoUrl={VIDEO_URL} />
             </div>
             <div className={b('sidebar')}>
-              <SubtitlesList />
+              <Sidebar />
             </div>
           </div>
         </div>

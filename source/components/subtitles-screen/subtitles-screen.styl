@@ -1,0 +1,40 @@
+@import '../../shared/mixins.styl';
+
+.subtitles-screen
+  height: 100%
+  display: flex
+  flex-direction column
+  position: relative
+  background-color #f7f7f7
+
+  &__header
+    padding 10px 10px 10px 12px
+    background-color #244d65;
+    color white
+    display: flex
+    justify-content space-between
+    align-items center
+
+  &__header-title
+    font(20px, 300, 1.5)
+    letter-spacing 0.015em
+
+  &__header-add-icon
+    fill white
+    width 10px
+    height 10px
+    margin-right: 5px
+
+  &__header-actions
+    button
+      background-color: #238ac8;
+      border: none;
+      border-radius: 2px;
+      color: white;
+      padding: 3px 10px
+      font(14px, 100)
+      cursor: pointer
+      text-transform: uppercase;
+
+      &:hover
+        background-color: #24a9ef;

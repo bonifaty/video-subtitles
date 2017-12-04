@@ -5,37 +5,21 @@ import './subtitles-list.styl';
 import {msToString} from '../../utils/time';
 import {deleteSubtitle} from '../../actions';
 
-import {PlusIcon} from '../../shared/icons';
-
-import AddSubtitle from '../add-subtitle';
+import {BinIcon} from '../../shared/icons';
 
 const b = require('b_').with('subtitles-list');
 
+/* {subtitles.length > 0 ?
+  this.renderSubtitles(subtitles, onDelete) :
+  'No subtitles yet'}*/
+
 class SubtitlesList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showAddSubtitleForm: false,
-    };
-
-    this.showAddSubtitleForm = this.showAddSubtitleForm.bind(this);
-    this.hideAddSubtitleForm = this.hideAddSubtitleForm.bind(this);
+  editSubtitle(id) {
+    this.props.onEdit(id);
   }
 
-  showAddSubtitleForm() {
-    this.setState({
-      showAddSubtitleForm: true,
-    });
-  }
-
-  hideAddSubtitleForm() {
-    this.setState({
-      showAddSubtitleForm: false,
-    });
-  }
-
-  renderSubtitles(subtitles, onDeleteSubtitle) {
-    return <ul className={b('list-container')}>
+  render({subtitles, onDelete}) {
+    return <ul className={b()}>
       {subtitles.map((subtitle) => (
         <li className={b('item')} key={subtitle.id}>
           <div className={b('time-range')}>
@@ -53,9 +37,11 @@ class SubtitlesList extends Component {
             </div>
             <div className={b('time-range-part')}>
               <div>
-                <button>Edit</button>
-                <button
-                  onClick={() => onDeleteSubtitle(subtitle.id)}>Delete</button>
+                <button onClick={() => this.editSubtitle(subtitle.id)}>
+                  Edit</button>
+                <button onClick={() => onDelete(subtitle.id)}>
+                  <BinIcon />
+                </button>
               </div>
             </div>
           </div>
@@ -63,26 +49,6 @@ class SubtitlesList extends Component {
         </li>
       ))}
     </ul>;
-  }
-
-  render({subtitles, onDeleteSubtitle}, {showAddSubtitleForm}) {
-    return (
-      <div className={b()}>
-        <div className={b('add-new', {visible: showAddSubtitleForm})}>
-          <AddSubtitle onCloseForm={this.hideAddSubtitleForm} />
-        </div>
-        <div className={b('header')}>
-          <h2 className={b('header-title')}>Subtitles</h2>
-          <div className={b('header-actions')}>
-            <button onClick={this.showAddSubtitleForm}>
-              <PlusIcon className={b('header-add-icon')} />Add</button>
-          </div>
-        </div>
-        {subtitles.length > 0 ?
-          this.renderSubtitles(subtitles, onDeleteSubtitle) :
-          'No subtitles yet'}
-      </div>
-    );
   }
 }
 
@@ -95,8 +61,10 @@ SubtitlesList = connect(
     };
   },
   (dispatch) => ({
-    onDeleteSubtitle: (id) => {
-      dispatch(deleteSubtitle(id));
+    onDelete: (id) => {
+      if (window.confirm('Are you sure you want to delete this item?')) {
+        dispatch(deleteSubtitle(id));
+      }
     },
   })
 )(SubtitlesList);
