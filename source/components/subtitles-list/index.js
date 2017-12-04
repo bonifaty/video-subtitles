@@ -62,7 +62,8 @@ class SubtitlesList extends Component {
           <h2>Subtitles</h2>
         </div>
         {subtitles.length > 0 ?
-          this.renderSubtitles(subtitles, onDeleteSubtitle) : 'No subtitles yet'}
+          this.renderSubtitles(subtitles, onDeleteSubtitle) :
+          'No subtitles yet'}
       </div>
     );
   }

@@ -6,7 +6,8 @@ export const subtitlesToWebVttBlobUrl = (subtitles) => {
   if (subtitles) {
     subtitles.forEach((subtitle) => {
       webVttText +=
-`${msToString(subtitle.inPoint, true)} --> ${msToString(subtitle.outPoint, true)}
+`${msToString(subtitle.inPoint, true)} --> 
+${msToString(subtitle.outPoint, true)}
 ${subtitle.text}\r\n\r\n`;
     });
   }
