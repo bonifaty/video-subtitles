@@ -1,8 +1,8 @@
-const COMMENTS_STATE_KEY = 'video-comments';
+const SUBTITLES_STATE_KEY = 'video-subtitles';
 
-export const loadComments = () => {
+export const loadSubtitles = () => {
   try {
-    const storedState = localStorage.getItem(COMMENTS_STATE_KEY);
+    const storedState = localStorage.getItem(SUBTITLES_STATE_KEY);
     if (storedState) {
       return JSON.parse(storedState);
     } else {
@@ -13,8 +13,8 @@ export const loadComments = () => {
   }
 };
 
-export const saveComments = (commentsState) => {
-  if (commentsState) {
-    localStorage.setItem(COMMENTS_STATE_KEY, JSON.stringify(commentsState));
+export const saveSubtitles = (subtitlesState) => {
+  if (subtitlesState) {
+    localStorage.setItem(SUBTITLES_STATE_KEY, JSON.stringify(subtitlesState));
   }
 };

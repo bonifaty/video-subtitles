@@ -1,8 +1,8 @@
 const uniqueId = () => Math.random().toString(36).substr(2, 9);
-export const addComment = (data) => {
+export const addSubtitle = (data) => {
   const {text, inpoint, outpoint} = data;
   return {
-    type: 'ADD_COMMENT',
+    type: 'ADD_SUBTITLE',
     id: uniqueId(),
     text,
     inpoint,
@@ -10,9 +10,9 @@ export const addComment = (data) => {
   };
 };
 
-export const deleteComment = (id) => {
+export const deleteSubtitle = (id) => {
   return {
-    type: 'DELETE_COMMENT',
+    type: 'DELETE_SUBTITLE',
     id,
   };
 };

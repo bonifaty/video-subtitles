@@ -1,6 +1,6 @@
-const comments = (state = [], action) => {
+const subtitles = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_COMMENT':
+    case 'ADD_SUBTITLE':
       return [
         ...state,
         {
@@ -11,9 +11,9 @@ const comments = (state = [], action) => {
         },
       ];
       break;
-    case 'DELETE_COMMENT':
-      return state.filter((comment) => {
-        return comment.id !== action.id;
+    case 'DELETE_SUBTITLE':
+      return state.filter((subtitle) => {
+        return subtitle.id !== action.id;
       });
       break;
     default:
@@ -21,4 +21,4 @@ const comments = (state = [], action) => {
   }
 };
 
-export default comments;
+export default subtitles;

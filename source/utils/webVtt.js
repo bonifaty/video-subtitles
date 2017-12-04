@@ -1,13 +1,13 @@
 import {msToString} from './time';
 
-export const commentsToWebVttBlobUrl = (comments) => {
+export const subtitlesToWebVttBlobUrl = (subtitles) => {
   let webVttText = `WEBVTT\r\n\r\n`;
 
-  if (comments) {
-    comments.forEach((comment) => {
+  if (subtitles) {
+    subtitles.forEach((subtitle) => {
       webVttText +=
-`${msToString(comment.inPoint, true)} --> ${msToString(comment.outPoint, true)}
-${comment.text}\r\n\r\n`;
+`${msToString(subtitle.inPoint, true)} --> ${msToString(subtitle.outPoint, true)}
+${subtitle.text}\r\n\r\n`;
     });
   }
   const blob = new Blob([webVttText], {

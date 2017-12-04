@@ -1360,7 +1360,7 @@ cssesc@^0.1.0:
     postcss-calc "^5.2.0"
     postcss-colormin "^2.1.8"
     postcss-convert-values "^2.3.4"
-    postcss-discard-comments "^2.0.4"
+    postcss-discard-subtitles "^2.0.4"
     postcss-discard-duplicates "^2.0.1"
     postcss-discard-empty "^2.0.1"
     postcss-discard-overridden "^0.1.1"
@@ -1852,7 +1852,7 @@ eslint@^4.0.0, eslint@^4.12.0:
     require-uncached "^1.0.3"
     semver "^5.3.0"
     strip-ansi "^4.0.0"
-    strip-json-comments "~2.0.1"
+    strip-json-subtitles "~2.0.1"
     table "^4.0.1"
     text-table "~0.2.0"
 
@@ -2425,9 +2425,9 @@ hpack.js@^2.1.6:
     readable-stream "^2.0.1"
     wbuf "^1.1.0"
 
-html-comment-regex@^1.1.0:
+html-subtitle-regex@^1.1.0:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
+  resolved "https://registry.yarnpkg.com/html-subtitle-regex/-/html-subtitle-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
 html-entities@^1.2.0:
   version "1.2.1"
@@ -2741,7 +2741,7 @@ is-svg@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-svg/-/is-svg-2.1.0.tgz#cf61090da0d9efbcab8722deba6f032208dbb0e9"
   dependencies:
-    html-comment-regex "^1.1.0"
+    html-subtitle-regex "^1.1.0"
 
 is-symbol@^1.0.1:
   version "1.0.1"
@@ -3610,9 +3610,9 @@ postcss-convert-values@^2.3.4:
     postcss "^5.0.11"
     postcss-value-parser "^3.1.2"
 
-postcss-discard-comments@^2.0.4:
+postcss-discard-subtitles@^2.0.4:
   version "2.0.4"
-  resolved "https://registry.yarnpkg.com/postcss-discard-comments/-/postcss-discard-comments-2.0.4.tgz#befe89fafd5b3dace5ccce51b76b81514be00e3d"
+  resolved "https://registry.yarnpkg.com/postcss-discard-subtitles/-/postcss-discard-subtitles-2.0.4.tgz#befe89fafd5b3dace5ccce51b76b81514be00e3d"
   dependencies:
     postcss "^5.0.14"
 
@@ -4010,7 +4010,7 @@ rc@^1.1.7:
     deep-extend "~0.4.0"
     ini "~1.3.0"
     minimist "^1.2.0"
-    strip-json-comments "~2.0.1"
+    strip-json-subtitles "~2.0.1"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -4615,9 +4615,9 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@~2.0.1:
+strip-json-subtitles@~2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+  resolved "https://registry.yarnpkg.com/strip-json-subtitles/-/strip-json-subtitles-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 style-loader@^0.19.0:
   version "0.19.0"

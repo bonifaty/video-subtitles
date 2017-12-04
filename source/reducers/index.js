@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import comments from './comments';
+import subtitles from './subtitles';
 
 const combinedReducers = combineReducers({
-  comments,
+  subtitles,
 });
 
 export default combinedReducers;

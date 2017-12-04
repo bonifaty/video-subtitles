@@ -1,14 +1,14 @@
 import {h, Component} from 'preact';
 
 import {connect} from 'preact-redux';
-import {addComment} from '../../actions';
+import {addSubtitle} from '../../actions';
 
 import TimeInput from '../time-input';
 
-import './add-comment.styl';
-const b = require('b_').with('add-comment');
+import './add-subtitle.styl';
+const b = require('b_').with('add-subtitle');
 
-class AddComment extends Component {
+class AddSubtitle extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,7 +42,7 @@ class AddComment extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(addComment(this.state));
+    this.props.dispatch(addSubtitle(this.state));
     this._form.reset();
     this.props.onCloseForm();
   }
@@ -52,7 +52,7 @@ class AddComment extends Component {
       <button onClick={onCloseForm}>Back</button>
       <form ref={(c) => this._form = c} onSubmit={this.handleSubmit}>
         <div>
-          <label>Comment</label>
+          <label>Subtitle</label>
           <div>
             <textarea onInput={this.handleTextUpdate} name='text' required />
           </div>
@@ -75,6 +75,6 @@ class AddComment extends Component {
   }
 }
 
-AddComment = connect()(AddComment);
+AddSubtitle = connect()(AddSubtitle);
 
-export default AddComment;
+export default AddSubtitle;

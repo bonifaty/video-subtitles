@@ -2,30 +2,35 @@ import {h, Component} from 'preact';
 import {connect} from 'preact-redux';
 import './video-player.styl';
 
-import {commentsToWebVttBlobUrl} from '../../utils/webVtt';
+import {subtitlesToWebVttBlobUrl} from '../../utils/webVtt';
 import {msToString} from '../../utils/time';
-
-const videoUrl = 'https://s3.eu-central-1.amazonaws.com/andrewabramov/video/iceland.mp4';
 
 const b = require('b_').with('video-player');
 
 class VideoPlayer extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       isPlaying: false,
       currentTime: 0,
     };
-    const duration = 144.915737;
-    this.duration = Math.ceil(duration * 1000);
+    this.duration = Math.ceil(props.duration * 1000);
     this.handlePlayPauseClick = this.handlePlayPauseClick.bind(this);
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.updateTimeline = this.updateTimeline.bind(this);
+    this.pauseVideo = this.pauseVideo.bind(this);
   }
 
   handleTimeUpdate(e) {
     this.setState({
       currentTime: Math.ceil(this._video.currentTime * 1000),
+    });
+  }
+
+  pauseVideo() {
+    this._video.pause();
+    this.setState({
+      isPlaying: false,
     });
   }
 
@@ -42,6 +47,9 @@ class VideoPlayer extends Component {
 
   updateTimeline(e) {
     this._video.currentTime = e.target.value;
+    if (this.state.isPlaying) {
+      this.pauseVideo();
+    }
   }
 
   componentDidMount() {
@@ -49,12 +57,12 @@ class VideoPlayer extends Component {
     this._range.value = 0;
   }
 
-  render({commentsUrl}, {isPlaying, currentTime}) {
+  render({subtitlesUrl, videoUrl}, {isPlaying, currentTime}) {
     return (<div className={b()}>
       <div className={b('container')}>
         <video ref={(c) => this._video = c} src={videoUrl}
           onTimeUpdate={this.handleTimeUpdate}>
-          <track default src={commentsUrl} />
+          <track default src={subtitlesUrl} />
         </video>
       </div>
       <div className={b('controls')}>
@@ -63,7 +71,7 @@ class VideoPlayer extends Component {
           {msToString(currentTime)} / {msToString(this.duration)}</div>
         <input ref={(c) => this._range = c}
           className={b('timeline')} type='range'
-          onInput={this.updateTimeline}
+          onInput={this.updateTimeline} value={currentTime/1000}
           min='0' max={this.duration/1000} step='0.001' />
       </div>
     </div>);
@@ -73,7 +81,7 @@ class VideoPlayer extends Component {
 VideoPlayer = connect(
   (state) => {
     return {
-      commentsUrl: commentsToWebVttBlobUrl(state.comments),
+      subtitlesUrl: subtitlesToWebVttBlobUrl(state.subtitles),
     };
   }
 )(VideoPlayer);
