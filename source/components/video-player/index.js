@@ -52,11 +52,6 @@ class VideoPlayer extends Component {
     }
   }
 
-  componentDidMount() {
-    // set range input to zero after mount
-    this._range.value = 0;
-  }
-
   render({subtitlesUrl, videoUrl}, {isPlaying, currentTime}) {
     return (<div className={b()}>
       <div className={b('container')}>

@@ -5,6 +5,8 @@ import './subtitles-list.styl';
 import {msToString} from '../../utils/time';
 import {deleteSubtitle} from '../../actions';
 
+import {PlusIcon} from '../../shared/icons';
+
 import AddSubtitle from '../add-subtitle';
 
 const b = require('b_').with('subtitles-list');
@@ -37,13 +39,27 @@ class SubtitlesList extends Component {
       {subtitles.map((subtitle) => (
         <li className={b('item')} key={subtitle.id}>
           <div className={b('time-range')}>
-            <span>{msToString(subtitle.inPoint)}</span> ...
-            <span>{msToString(subtitle.outPoint)}</span>
+            <div className={b('time-range-part')}>
+              <div className={b('time-range-label')}>From</div>
+              <div className={b('time-range-value')}>
+                {msToString(subtitle.inPoint)}
+              </div>
+            </div>
+            <div className={b('time-range-part')}>
+              <div className={b('time-range-label')}>To</div>
+              <div className={b('time-range-value')}>
+                {msToString(subtitle.outPoint)}
+              </div>
+            </div>
+            <div className={b('time-range-part')}>
+              <div>
+                <button>Edit</button>
+                <button
+                  onClick={() => onDeleteSubtitle(subtitle.id)}>Delete</button>
+              </div>
+            </div>
           </div>
-
           <div className={b('subtitle-text')}>{subtitle.text}</div>
-          <button
-            onClick={() => onDeleteSubtitle(subtitle.id)}>Delete</button>
         </li>
       ))}
     </ul>;
@@ -56,10 +72,11 @@ class SubtitlesList extends Component {
           <AddSubtitle onCloseForm={this.hideAddSubtitleForm} />
         </div>
         <div className={b('header')}>
+          <h2 className={b('header-title')}>Subtitles</h2>
           <div className={b('header-actions')}>
-            <button onClick={this.showAddSubtitleForm}>Add</button>
+            <button onClick={this.showAddSubtitleForm}>
+              <PlusIcon className={b('header-add-icon')} />Add</button>
           </div>
-          <h2>Subtitles</h2>
         </div>
         {subtitles.length > 0 ?
           this.renderSubtitles(subtitles, onDeleteSubtitle) :

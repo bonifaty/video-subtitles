@@ -35,10 +35,9 @@ render(
     <Provider store={store}>
       <div className='page'>
         <div className={b('header')}>
-          <h1>Subtitles Editor</h1>
-          <div className={b('infop')}>
-            <h2>Iceland Drone Footage</h2>
-            <p>Duration: 144.915 seconds</p>
+          <div className={b('info')}>
+            <h1>Iceland Drone Footage</h1>
+            <p>Duration: <strong>144.915 seconds</strong></p>
           </div>
         </div>
         <div className={b()}>

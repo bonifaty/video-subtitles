@@ -7,46 +7,69 @@
   position: relative
   background-color #f7f7f7
   &__header
-    padding 10px
-    font(17px)
-    background-color #88C057;
+    padding 10px 10px 10px 12px
+    background-color #244d65;
     color white
+    display: flex
+    justify-content space-between
+
+  &__header-title
+    font(20px, 300)
+    letter-spacing 0.015em
+
+  &__header-add-icon
+    fill white
+    width 10px
+    height 10px
+    margin-right: 5px
 
   &__list-container
     overflow auto
+    padding 0 12px
 
   &__header-actions
-    float: right
+    text-align right
 
     button
-      background-color: transparent;
-      border: 1px solid white;
-      border-radius: 10px;
+      background-color: #238ac8;
+      border: none;
+      border-radius: 2px;
       color: white;
       padding: 3px 10px
-      font(14px)
+      font(14px, 100)
       cursor: pointer
+      text-transform: uppercase;
 
-      &:hover {
-        background-color rgba(0,0,0,0.1)
-      }
+      &:hover
+        background-color: #24a9ef;
 
   &__item
-    border-bottom: 1px solid #ccc;
-    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    padding 20px 0
 
     &:first-child
       margin-top: 0
+      border-top: none;
 
   &__time-range
     font(12px)
-    padding 5px 10px
-    /*background-color #47A0DB;
-    color white*/
+    display: flex
+    justify-content space-between
+    margin-bottom: 10px
+
+  &__time-range-part
+    flex-basis 0
+    flex-grow 1
+
+  &__time-range-label
+    color #888;
+    margin-bottom: 2px
+
+  &__time-range-value
+    font(13px, 300)
 
   &__subtitle-text
-    font(14px, 400, 1.5)
-    padding: 5px 10px
+    font(15px, 100, 1.5)
 
   &__add-new
     position: absolute

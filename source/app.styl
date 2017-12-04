@@ -1,11 +1,27 @@
+@import './shared/mixins.styl';
+
 .page
   max-width 1280px
-  margin 40px auto 0
+  margin 20px auto 0
   padding 0 20px
 
 .app
   position: relative
   padding-bottom: 50%;
+
+  &__header
+    margin-bottom: 20px
+    h1
+      font(28px, 100)
+      letter-spacing 1px
+      margin-bottom: 4px;
+      color #546979
+    p
+      color: #647987
+      font(13px, 300)
+
+      strong
+        font-weight 500
 
   &__container
     position: absolute
@@ -16,13 +32,13 @@
     display: flex
 
   &__main
-    flex-basis 70%
+    flex-basis 68%
     flex-grow 1
 
 
   &__sidebar
     padding-left: 10px;
-    flex-basis 30%
+    flex-basis 32%
     flex-grow 1
 
 *
