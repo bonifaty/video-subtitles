@@ -1,21 +1,23 @@
 import {h, Component} from 'preact';
 import Subtitles from '../subtitles-screen';
-import Form from '../form';
+import EditForm from '../form';
 
 class Sidebar extends Component {
   constructor() {
     super();
     this.state = {
       showForm: false,
+      editId: null,
     };
 
     this.handleOnShowForm = this.handleOnShowForm.bind(this);
     this.handleOnHideForm = this.handleOnHideForm.bind(this);
   }
 
-  handleOnShowForm() {
+  handleOnShowForm(id) {
     this.setState({
       showForm: true,
+      editId: id,
     });
   }
 
@@ -25,9 +27,9 @@ class Sidebar extends Component {
     });
   }
 
-  render(props, state) {
-    return state.showForm ?
-      <Form onHideForm={this.handleOnHideForm} /> :
+  render(props, {showForm, editId}) {
+    return showForm ?
+      <EditForm onHideForm={this.handleOnHideForm} id={editId} /> :
       <Subtitles onShowForm={this.handleOnShowForm} />;
   }
 }
