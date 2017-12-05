@@ -9,16 +9,12 @@ import {BinIcon} from '../../shared/icons';
 
 const b = require('b_').with('subtitles-list');
 
-/* {subtitles.length > 0 ?
-  this.renderSubtitles(subtitles, onDelete) :
-  'No subtitles yet'}*/
-
 class SubtitlesList extends Component {
   editSubtitle(id) {
     this.props.onEdit(id);
   }
 
-  render({subtitles, onDelete}) {
+  renderSubtitles(subtitles, onDelete) {
     return <ul className={b()}>
       {subtitles.map((subtitle) => (
         <li className={b('item')} key={subtitle.id}>
@@ -49,6 +45,14 @@ class SubtitlesList extends Component {
         </li>
       ))}
     </ul>;
+  }
+
+  render({subtitles, onDelete}) {
+    return subtitles.length > 0 ?
+      this.renderSubtitles(subtitles, onDelete) :
+      <div className={b('empty-list')}>
+        You don't have any subtitles, please add new
+      </div>;
   }
 }
 

@@ -1,0 +1,80 @@
+@import '../../shared/mixins.styl';
+
+.edit-form
+  height: 100%
+  background-color #f7f7f7
+
+  &__header
+    padding 10px 10px 10px 12px
+    background-color #244d65;
+    color white
+    display: flex
+    align-items center
+
+  &__header-title
+    font(18px, 300, 1.5)
+    letter-spacing 0.015em
+
+  &__header-back-button
+    background transparent
+    border none
+    cursor: pointer
+    transition transform 0.3s;
+    transform translateX(0);
+    padding: 3px;
+    margin-right: 5px;
+
+    &:hover
+      transform translateX(-3px);
+
+  &__header-back-icon
+    fill: #fff;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    vertical-align: bottom;
+
+  &__form
+    padding 20px 10px
+
+  &__form-row
+    margin-bottom: 15px
+
+    &_time
+      display: flex
+
+  &__form-row-part
+    flex-basis 0
+    flex-grow 1
+
+  &__label
+    display: inline-block
+    font(14px, 400);
+    color: #888;
+    margin-bottom: 4px;
+
+  &__text
+    font(16px)
+    resize none
+    width: 87%
+    border 1px solid #ddd
+    padding 4px 6px
+
+  &__button
+    background-color #80B957
+    font(14px, 300)
+    text-transform: uppercase
+    border none
+    border-radius 2px
+    padding 8px 18px
+    color white
+    cursor: pointer
+    transition background-color 0.3s
+
+    &:hover
+      background-color #85c461
+
+
+
+
+

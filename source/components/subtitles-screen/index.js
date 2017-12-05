@@ -12,8 +12,9 @@ class SubtitlesScreen extends Component {
       <div className={b()}>
         <div className={b('header')}>
           <h2 className={b('header-title')}>Subtitles</h2>
-          <div className={b('header-actions')}>
-            <button onClick={() => onShowForm()}>
+          <div>
+            <button onClick={() => onShowForm()}
+              className={b('header-button')}>
               <PlusIcon className={b('header-add-icon')} />Add</button>
           </div>
         </div>

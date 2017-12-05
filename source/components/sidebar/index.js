@@ -1,6 +1,6 @@
 import {h, Component} from 'preact';
 import Subtitles from '../subtitles-screen';
-import EditForm from '../form';
+import EditForm from '../edit-form';
 
 class Sidebar extends Component {
   constructor() {
