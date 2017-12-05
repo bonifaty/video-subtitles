@@ -4,6 +4,10 @@
   overflow auto
   padding 0 12px
 
+  &__empty-list
+    padding: 15px 10px;
+    font(18px, 300)
+
   &__item
     border-top: 1px solid #ccc;
     padding 20px 0
@@ -31,3 +35,32 @@
 
   &__subtitle-text
     font(15px, 100, 1.5)
+
+  &__actions
+    flex-shrink 0
+
+  &__action-icon
+    display: inline-block
+    width 16px
+    height 16px
+    fill #238ac8
+    vertical-align middle
+    margin-right: 5px;
+
+    &_delete
+      margin-right: 0
+      fill #dd4b3a
+
+  &__action-button
+    background-color transparent
+    border none
+    cursor: pointer
+    margin-left 5px
+    opacity 0.7
+    transition opacity 0.3s
+
+    &:first-child
+      margin-left: 0
+
+    &:hover
+      opacity 1

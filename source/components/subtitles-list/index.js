@@ -5,7 +5,7 @@ import './subtitles-list.styl';
 import {msToString} from '../../utils/time';
 import {deleteSubtitle} from '../../actions';
 
-import {BinIcon} from '../../shared/icons';
+import {EditIcon, BinIcon} from '../../shared/icons';
 
 const b = require('b_').with('subtitles-list');
 
@@ -31,14 +31,15 @@ class SubtitlesList extends Component {
                 {msToString(subtitle.outPoint)}
               </div>
             </div>
-            <div className={b('time-range-part')}>
-              <div>
-                <button onClick={() => this.editSubtitle(subtitle.id)}>
-                  Edit</button>
-                <button onClick={() => onDelete(subtitle.id)}>
-                  <BinIcon />
-                </button>
-              </div>
+            <div className={b('actions')}>
+              <button className={b('action-button')}
+                onClick={() => this.editSubtitle(subtitle.id)}>
+                <EditIcon className={b('action-icon')} />
+                Edit</button>
+              <button className={b('action-button')}
+                onClick={() => onDelete(subtitle.id)}>
+                <BinIcon className={b('action-icon', {delete: true})} />
+              </button>
             </div>
           </div>
           <div className={b('subtitle-text')}>{subtitle.text}</div>
@@ -51,7 +52,7 @@ class SubtitlesList extends Component {
     return subtitles.length > 0 ?
       this.renderSubtitles(subtitles, onDelete) :
       <div className={b('empty-list')}>
-        You don't have any subtitles, please add new
+        You don't have any subtitles yet
       </div>;
   }
 }

@@ -1,7 +1,7 @@
 import {h, Component} from 'preact';
 
 import {connect} from 'preact-redux';
-import {addSubtitle, updateSubtitle} from '../../actions';
+import {addSubtitle, updateSubtitle, deleteSubtitle} from '../../actions';
 
 import TimeInput from '../time-input';
 import {BackIcon} from '../../shared/icons';
@@ -24,6 +24,7 @@ class EditForm extends Component {
     this.handleTextUpdate = this.handleTextUpdate.bind(this);
     this.handleInpointUpdate = this.handleInpointUpdate.bind(this);
     this.handleOutpointUpdate = this.handleOutpointUpdate.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   handleTextUpdate(e) {
@@ -59,7 +60,15 @@ class EditForm extends Component {
     onHideForm();
   }
 
-  render({onHideForm},
+  handleDeleteClick(id) {
+    const {dispatch, onHideForm} = this.props;
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      dispatch(deleteSubtitle(id));
+      onHideForm();
+    }
+  }
+
+  render({onHideForm, item},
     {title, text, inPoint, outPoint, submitText, showDelete}) {
     return <div className={b()}>
       <div className={b('header')}>
@@ -95,7 +104,10 @@ class EditForm extends Component {
         </div>
         <div className={'actions'}>
           <button className={b('button')} type='submit'>{submitText}</button>
-          {showDelete ? <button>Delete</button> : ''}
+          {showDelete ?
+            <button className={b('button', {delete: true})} type='button'
+              onClick={() => this.handleDeleteClick(item.id)}>
+            Delete</button> : ''}
         </div>
       </form>
     </div>;
