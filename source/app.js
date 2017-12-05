@@ -36,8 +36,8 @@ render(
       <div className='page'>
         <div className={b('header')}>
           <div className={b('info')}>
-            <h1>Iceland Drone Footage</h1>
-            <p>Duration: <strong>144.915 seconds</strong></p>
+            <h1>Subtitles Editor</h1>
+            <p>Iceland Drone Footage</p>
           </div>
         </div>
         <div className={b()}>

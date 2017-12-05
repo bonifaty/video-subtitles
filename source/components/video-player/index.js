@@ -5,8 +5,6 @@ import './video-player.styl';
 import {subtitlesToWebVttBlobUrl} from '../../utils/webVtt';
 import {msToString} from '../../utils/time';
 
-import {PlayIcon, PauseIcon} from '../../shared/icons';
-
 const b = require('b_').with('video-player');
 
 class VideoPlayer extends Component {
@@ -57,20 +55,13 @@ class VideoPlayer extends Component {
   render({subtitlesUrl, videoUrl}, {isPlaying, currentTime}) {
     return (<div className={b()}>
       <div className={b('container')}>
-        <video ref={(c) => this._video = c} src={videoUrl}
+        <video controls ref={(c) => this._video = c} src={videoUrl}
           onTimeUpdate={this.handleTimeUpdate}>
           <track default src={subtitlesUrl} />
         </video>
       </div>
       <div className={b('controls')}>
-        <div><button onClick={this.handlePlayPauseClick}>
-          {isPlaying ? <PauseIcon /> : <PlayIcon />}</button>
-          {msToString(currentTime)} / {msToString(this.duration)}</div>
-        <input ref={(c) => this._range = c}
-          className={b('timeline')} type='range'
-          onInput={this.updateTimeline} value={currentTime/1000}
-          min='0' max={this.duration/1000} step='0.001' />
-      </div>
+        {msToString(currentTime)} / {msToString(this.duration)}</div>
     </div>);
   }
 }

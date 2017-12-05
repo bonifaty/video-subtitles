@@ -1,8 +1,14 @@
+@import '../../shared/mixins.styl';
+
 .video-player
+  display: flex
+  flex-direction column
+  height: 100%
 
   &__container
     padding-bottom: 56.25%;
     position relative
+    flex-shrink 0
 
   video
     position: absolute
@@ -12,6 +18,13 @@
     height: 100%
     background-color black
 
-  &__timeline
-    width: 100%
+  &__controls
+    font(24px, 100)
+    color #546A79
+    background-color #f7f7f7
+    flex-grow 1
+    margin-top: 10px
+    display: flex
+    justify-content space-around
+    align-items center
 
